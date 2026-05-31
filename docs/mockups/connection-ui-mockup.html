@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>HiAndSee — 連線 UI Mockup</title>
+<!-- V1 Typography (LOUD): Darumadrop One = 圓潤手寫顯示字 (PEAK)；Nunito = 友善圓體內文 -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Darumadrop+One&family=Nunito:wght@600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    /* PEAK 明亮大地調色盤 */
+    --moss:#62a83f;            /* 苔綠 — 主動作 */
+    --moss-dark:#43792a;
+    --sky:#49a6d8;             /* 天藍 — 次動作 */
+    --sky-dark:#2f7fac;
+    --fire:#ee8a3c;            /* 營火橘 — 重點/離開 */
+    --fire-dark:#c96a23;
+    --earth:#4b3a2a;           /* 土棕 — 描邊/文字 */
+    --earth-soft:#7a6450;
+    --cream:#fbf3e1;           /* 羊皮紙卡片 */
+    --cream-deep:#f1e4c8;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html,body{height:100%;}
+  body{
+    font-family:'Nunito',sans-serif;
+    /* 戶外明亮天空→草地漸層 (PEAK wholesome 戶外感) */
+    background:linear-gradient(#a9e4f6 0%,#bfeaf0 38%,#d8f1d6 62%,#cdebbf 100%);
+    display:flex;align-items:center;justify-content:center;
+    overflow:hidden;position:relative;
+  }
+  /* 陽光 */
+  .sun{position:absolute;top:-90px;right:-60px;width:340px;height:340px;border-radius:50%;
+    background:radial-gradient(circle,#fff3c4 0%,rgba(255,231,150,.55) 45%,rgba(255,231,150,0) 70%);}
+  /* 連綿小丘 (純 CSS) */
+  .hill{position:absolute;left:-10%;width:120%;border-radius:50%;}
+  .hill.back{bottom:-220px;height:420px;background:#9ad17f;}
+  .hill.front{bottom:-300px;height:430px;background:#7cc06a;}
+  .cloud{position:absolute;background:rgba(255,255,255,.85);border-radius:50px;filter:blur(2px);}
+  .cloud.a{top:14%;left:12%;width:130px;height:38px;}
+  .cloud.b{top:24%;left:20%;width:80px;height:28px;}
+  .cloud.c{top:10%;right:18%;width:100px;height:32px;}
+
+  /* ---------- 卡片 ---------- */
+  .card{
+    position:relative;z-index:2;width:430px;max-width:92vw;
+    background:var(--cream);
+    border:4px solid var(--earth);        /* chunky 描邊 = 派對 baseline */
+    border-radius:30px;
+    padding:30px 30px 26px;
+    box-shadow:0 14px 0 rgba(75,58,42,.22), 0 24px 40px rgba(40,60,30,.25);
+    text-align:center;
+  }
+
+  /* 標題 — V1 LOUD */
+  .brand{font-family:'Darumadrop One',cursive;font-size:46px;line-height:1;color:var(--earth);
+    letter-spacing:1px;}
+  .brand .hi{color:var(--moss);} .brand .see{color:var(--sky);}
+  .tagline{font-weight:700;color:var(--earth-soft);margin-top:6px;font-size:15px;}
+  .badge{display:inline-block;background:var(--fire);color:#fff;font-family:'Darumadrop One',cursive;
+    font-size:15px;padding:3px 14px;border-radius:999px;border:3px solid var(--earth);
+    transform:rotate(-4deg);margin-bottom:8px;box-shadow:0 4px 0 rgba(75,58,42,.25);}
+
+  .field-label{font-weight:800;color:var(--earth-soft);font-size:13px;text-align:left;
+    margin:16px 0 5px 6px;}
+
+  /* 一般輸入 (baseline，圓潤) */
+  .input{width:100%;font-family:'Nunito';font-weight:700;font-size:17px;color:var(--earth);
+    background:#fff;border:3px solid var(--earth);border-radius:16px;padding:11px 16px;outline:none;}
+  .input:focus{border-color:var(--moss);}
+
+  /* ---------- V2 LOUD: 祕密基地名稱 = 畫面主角巨型名牌 ---------- */
+  .room-hero{margin-top:18px;background:linear-gradient(#eaf6ff,#d6ecfb);
+    border:4px dashed var(--sky-dark);border-radius:22px;padding:14px 16px 16px;position:relative;}
+  .room-hero .cap{font-family:'Nunito';font-weight:800;font-size:12px;letter-spacing:2px;
+    color:var(--sky-dark);text-transform:uppercase;}
+  .room-hero input{width:100%;text-align:center;font-family:'Darumadrop One',cursive;
+    font-size:40px;color:var(--earth);background:transparent;border:none;outline:none;line-height:1.1;}
+  .room-hero .pencil{position:absolute;right:14px;top:12px;font-size:18px;opacity:.5;}
+
+  /* 人數 stepper (chunky) */
+  .ppl{display:flex;align-items:center;justify-content:center;gap:14px;margin-top:6px;}
+  .step{width:42px;height:42px;border-radius:50%;border:3px solid var(--earth);background:#fff;
+    font-family:'Darumadrop One',cursive;font-size:24px;color:var(--earth);cursor:pointer;
+    box-shadow:0 4px 0 rgba(75,58,42,.22);transition:transform .08s;}
+  .step:active{transform:translateY(3px);box-shadow:0 1px 0 rgba(75,58,42,.22);}
+  .ppl .count{font-family:'Darumadrop One',cursive;font-size:34px;color:var(--earth);min-width:40px;}
+
+  /* ---------- chunky 彈跳按鈕 (Fall Guys / Stumble baseline) ---------- */
+  .btn-row{display:flex;gap:14px;margin-top:22px;}
+  .btn{flex:1;font-family:'Darumadrop One',cursive;font-size:23px;color:#fff;cursor:pointer;
+    border:3px solid var(--earth);border-radius:999px;padding:13px 8px 11px;position:relative;
+    box-shadow:0 6px 0 var(--earth);transition:transform .08s, box-shadow .08s, filter .12s;}
+  .btn:hover{filter:brightness(1.06);transform:translateY(-2px);box-shadow:0 8px 0 var(--earth);}
+  .btn:active{transform:translateY(5px);box-shadow:0 1px 0 var(--earth);}   /* 按下沉下去 = 觸感 */
+  .btn.host{background:var(--moss);}
+  .btn.join{background:var(--sky);}
+  .btn.ghost{background:#e7dcc4;color:var(--earth);}
+  .btn.leave{background:var(--fire);}
+
+  .status{margin-top:16px;min-height:18px;font-weight:700;font-size:13px;color:var(--earth-soft);}
+
+  /* 狀態面板切換 */
+  .panel{display:none;} .panel.on{display:block;}
+
+  /* 連線中 spinner */
+  .spinner{width:54px;height:54px;margin:18px auto 10px;border:6px solid var(--cream-deep);
+    border-top-color:var(--moss);border-radius:50%;animation:spin 1s linear infinite;}
+  @keyframes spin{to{transform:rotate(360deg);}}
+  .big-state{font-family:'Darumadrop One',cursive;font-size:26px;color:var(--earth);margin:6px 0 2px;}
+
+  /* 已連線玩家頭像 (Among Us 豆子) */
+  .players{display:flex;justify-content:center;gap:10px;margin:16px 0 6px;flex-wrap:wrap;}
+  .bean{width:46px;height:54px;border-radius:24px 24px 22px 22px;border:3px solid var(--earth);
+    position:relative;box-shadow:0 4px 0 rgba(75,58,42,.18);}
+  .bean::before{content:"";position:absolute;top:13px;right:8px;width:16px;height:12px;background:#cdeffd;
+    border:2px solid var(--earth);border-radius:8px;}            /* 護目鏡 */
+  .bean.empty{background:#e7dcc4;border-style:dashed;box-shadow:none;opacity:.6;}
+  .bean.empty::before{display:none;}
+  .count-big{font-family:'Darumadrop One',cursive;font-size:30px;color:var(--earth);}
+
+  /* 預覽切換器 */
+  .switcher{position:fixed;top:14px;left:50%;transform:translateX(-50%);z-index:9;
+    background:rgba(255,255,255,.85);border:2px solid var(--earth);border-radius:999px;
+    padding:4px;display:flex;gap:4px;}
+  .switcher button{font-family:'Nunito';font-weight:800;font-size:12px;border:none;cursor:pointer;
+    background:transparent;color:var(--earth);padding:6px 12px;border-radius:999px;}
+  .switcher button.sel{background:var(--moss);color:#fff;}
+</style>
+</head>
+<body>
+  <div class="sun"></div>
+  <div class="cloud a"></div><div class="cloud b"></div><div class="cloud c"></div>
+  <div class="hill back"></div><div class="hill front"></div>
+
+  <!-- 預覽用：切換三個狀態（正式版由程式控制） -->
+  <div class="switcher">
+    <button class="sel" onclick="show('disc',this)">未連線</button>
+    <button onclick="show('conn',this)">連線中</button>
+    <button onclick="show('done',this)">已連線</button>
+  </div>
+
+  <div class="card">
+    <div class="badge">🔦 第 1 露營梯隊</div>
+    <div class="brand"><span class="hi">Hi</span>And<span class="see">See</span></div>
+    <div class="tagline">和朋友一起躲貓貓 🌲</div>
+
+    <!-- ===== 未連線 ===== -->
+    <div id="disc" class="panel on">
+      <div class="field-label">你的名字</div>           <!-- V3: 親暱用詞 (A Short Hike) -->
+      <input class="input" value="小探險家 6979" />
+
+      <!-- V2 LOUD: 祕密基地名稱 = 主角 -->
+      <div class="room-hero">
+        <div class="cap">祕密基地名稱</div>
+        <span class="pencil">✏️</span>
+        <input value="Room1" />
+      </div>
+
+      <div class="field-label" style="text-align:center;margin-left:0;">幾個人玩</div>
+      <div class="ppl">
+        <button class="step">−</button>
+        <span class="count">4</span>
+        <button class="step">＋</button>
+      </div>
+
+      <!-- V3: 趣味用詞取代 Host/Join -->
+      <div class="btn-row">
+        <button class="btn host">開一局 🎮</button>
+        <button class="btn join">加入朋友 👋</button>
+      </div>
+      <div class="status">準備好就出發！</div>
+    </div>
+
+    <!-- ===== 連線中 ===== -->
+    <div id="conn" class="panel">
+      <div class="spinner"></div>
+      <div class="big-state">正在前往營地…</div>
+      <div class="status">建立連線中，稍等一下下</div>
+      <div class="btn-row"><button class="btn ghost">取消</button></div>
+    </div>
+
+    <!-- ===== 已連線 ===== -->
+    <div id="done" class="panel">
+      <div class="big-state">已抵達祕密基地 🏕️</div>
+      <div class="room-hero" style="margin-top:8px;">
+        <div class="cap">基地</div>
+        <div style="font-family:'Darumadrop One',cursive;font-size:34px;color:var(--earth);">Room1</div>
+      </div>
+      <div class="players">
+        <div class="bean" style="background:#ef6f6f;"></div>
+        <div class="bean" style="background:#5fb6e6;"></div>
+        <div class="bean empty"></div>
+        <div class="bean empty"></div>
+      </div>
+      <div class="count-big">玩家 2 / 4</div>
+      <div class="btn-row"><button class="btn leave">離開營地</button></div>
+      <div class="status">把基地名稱「Room1」告訴朋友就能一起玩！</div>
+    </div>
+  </div>
+
+<script>
+  function show(id, el){
+    document.querySelectorAll('.panel').forEach(p=>p.classList.remove('on'));
+    document.getElementById(id).classList.add('on');
+    document.querySelectorAll('.switcher button').forEach(b=>b.classList.remove('sel'));
+    el.classList.add('sel');
+  }
+</script>
+</body>
+</html>

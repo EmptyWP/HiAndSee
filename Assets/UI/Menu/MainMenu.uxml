@@ -1,0 +1,77 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" editor-extension-mode="False">
+    <Style src="MenuStyles.uss" />
+    <ui:VisualElement name="root" class="root">
+
+        <!-- ===== 主選單 ===== -->
+        <ui:VisualElement name="menu-screen" class="screen">
+            <ui:VisualElement class="topbar">
+                <ui:VisualElement class="pchip">
+                    <ui:VisualElement class="av" />
+                    <ui:Label name="profile-name" text="小探險家 6979" class="pchip-name" />
+                </ui:VisualElement>
+                <ui:Button name="sound-btn" text="♪" class="iconbtn" />
+            </ui:VisualElement>
+            <ui:VisualElement class="menu-left">
+                <ui:Label text="第 1 露營梯隊" class="badge" />
+                <ui:Label text="HiAndSee" class="logo" />
+                <ui:Label text="和朋友一起躲貓貓" class="tagline" />
+                <ui:VisualElement class="menu-btns">
+                    <ui:Button name="play-btn" text="開始遊戲" class="btn btn-start" />
+                    <ui:Button name="settings-btn" text="設定" class="btn btn-blue" />
+                    <ui:Button name="quit-btn" text="離開遊戲" class="btn btn-ghost" />
+                </ui:VisualElement>
+            </ui:VisualElement>
+            <ui:Label text="v0.1 ・ HiAndSee" class="version" />
+        </ui:VisualElement>
+
+        <!-- ===== 連線 ===== -->
+        <ui:VisualElement name="connect-screen" class="screen overlay">
+            <ui:VisualElement class="card">
+                <ui:Button name="connect-back" text="‹" class="back" />
+                <ui:Label text="找朋友一起玩" class="card-title" />
+                <ui:Label text="祕密基地名稱" class="field-label" />
+                <ui:VisualElement class="room-hero">
+                    <ui:Label text="分享給朋友就能一起玩" class="room-cap" />
+                    <ui:TextField name="room-field" value="Room1" class="room-input" />
+                </ui:VisualElement>
+                <ui:Label text="幾個人玩" class="field-label center" />
+                <ui:VisualElement class="ppl">
+                    <ui:Button name="minus-btn" text="−" class="step" />
+                    <ui:Label name="max-label" text="4" class="ppl-count" />
+                    <ui:Button name="plus-btn" text="＋" class="step" />
+                </ui:VisualElement>
+                <ui:VisualElement class="btn-row">
+                    <ui:Button name="host-btn" text="開一局" class="btn btn-start flex" />
+                    <ui:Button name="join-btn" text="加入朋友" class="btn btn-blue flex" />
+                </ui:VisualElement>
+                <ui:Label name="connect-status" text="準備好就出發！" class="status" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+
+        <!-- ===== 設定 ===== -->
+        <ui:VisualElement name="settings-screen" class="screen overlay">
+            <ui:VisualElement class="card">
+                <ui:Button name="settings-back" text="‹" class="back" />
+                <ui:Label text="設定" class="card-title" />
+                <ui:VisualElement class="set-row">
+                    <ui:Label text="音樂" class="set-lbl" />
+                    <ui:Slider name="music-slider" low-value="0" high-value="1" value="0.7" class="set-slider" />
+                </ui:VisualElement>
+                <ui:VisualElement class="set-row">
+                    <ui:Label text="音效" class="set-lbl" />
+                    <ui:Slider name="sfx-slider" low-value="0" high-value="1" value="0.9" class="set-slider" />
+                </ui:VisualElement>
+                <ui:VisualElement class="set-row">
+                    <ui:Label text="全螢幕" class="set-lbl" />
+                    <ui:Toggle name="fullscreen-toggle" class="set-toggle" />
+                </ui:VisualElement>
+                <ui:Label text="你的名字" class="field-label" />
+                <ui:TextField name="name-field" value="小探險家 6979" class="name-input" />
+                <ui:VisualElement class="btn-row">
+                    <ui:Button name="save-btn" text="儲存" class="btn btn-start flex" />
+                </ui:VisualElement>
+            </ui:VisualElement>
+        </ui:VisualElement>
+
+    </ui:VisualElement>
+</ui:UXML>

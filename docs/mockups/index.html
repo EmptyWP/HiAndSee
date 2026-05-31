@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>HiAndSee — 主選單 Mockup</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Darumadrop+One&family=Nunito:wght@600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --moss:#62a83f; --moss-dark:#43792a;
+    --sky:#49a6d8;  --sky-dark:#2f7fac;
+    --fire:#ee8a3c; --fire-dark:#c96a23;
+    --earth:#4b3a2a; --earth-soft:#7a6450;
+    --cream:#fbf3e1; --cream-deep:#f1e4c8;
+    --gloss:linear-gradient(to bottom, rgba(255,255,255,.5) 0%, rgba(255,255,255,.12) 16%, rgba(255,255,255,0) 46%, rgba(0,0,0,.18) 100%);
+    --inset:inset 0 3px 0 rgba(255,255,255,.5), inset 0 -8px 0 rgba(0,0,0,.16);
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html,body{height:100%;}
+  body{font-family:'Nunito',sans-serif;overflow:hidden;
+    background:linear-gradient(#a9e4f6 0%,#bfeaf0 36%,#d8f1d6 60%,#cdebbf 100%);}
+  .stage{position:relative;width:100%;height:100%;}
+
+  /* ---------- 場景 ---------- */
+  .sun{position:absolute;top:-110px;right:-70px;width:380px;height:380px;border-radius:50%;
+    background:radial-gradient(circle,#fff6cf 0%,rgba(255,231,150,.6) 42%,rgba(255,231,150,0) 70%);}
+  .cloud{position:absolute;background:linear-gradient(#ffffff,#e9f3fb);border-radius:50px;
+    box-shadow:0 6px 12px rgba(70,110,140,.18), inset 0 4px 0 rgba(255,255,255,.9);}
+  .cloud.a{top:11%;left:9%;width:150px;height:42px;animation:drift 26s ease-in-out infinite;}
+  .cloud.b{top:20%;left:18%;width:90px;height:30px;animation:drift 34s ease-in-out infinite reverse;}
+  .cloud.c{top:8%;right:24%;width:120px;height:36px;animation:drift 30s ease-in-out infinite;}
+  @keyframes drift{0%,100%{transform:translateX(0);}50%{transform:translateX(46px);}}
+  .hill{position:absolute;left:-50%;width:200%;border-radius:50%;}
+  .hill.far{bottom:-240px;height:440px;background:linear-gradient(#a6d98a,#90c873);box-shadow:inset 0 14px 0 rgba(255,255,255,.18);}
+  .hill.near{bottom:-320px;height:460px;background:linear-gradient(#82c66f,#6cb259);box-shadow:inset 0 16px 0 rgba(255,255,255,.22), 0 -8px 22px rgba(40,70,30,.12);}
+  .tree{position:absolute;width:0;height:0;filter:drop-shadow(0 8px 4px rgba(40,70,30,.25));}
+  .tree i{display:block;width:0;height:0;border-left:24px solid transparent;border-right:24px solid transparent;border-bottom:42px solid #5aa84d;margin-bottom:-22px;}
+  .tree i:nth-child(2){border-left-width:30px;border-right-width:30px;border-bottom-width:50px;border-bottom-color:#4f9b43;}
+  .tree b{display:block;width:14px;height:20px;background:#7a5a3a;margin:0 auto;border-radius:3px;}
+  .t1{left:8%;bottom:140px;transform:scale(1.1);} .t2{left:15%;bottom:110px;transform:scale(.8);}
+  .t3{right:10%;bottom:135px;transform:scale(1.25);}
+
+  /* ---------- 立體按鈕 ---------- */
+  .btn{font-family:'Darumadrop One',cursive;color:#fff;cursor:pointer;border:3px solid var(--earth);border-radius:999px;position:relative;
+    background-image:var(--gloss);text-shadow:0 2px 0 rgba(0,0,0,.22);
+    box-shadow:var(--inset), 0 8px 0 var(--earth), 0 16px 20px rgba(40,60,30,.30);transition:transform .08s, box-shadow .08s, filter .12s;}
+  .btn:hover{filter:brightness(1.05);transform:translateY(-2px);box-shadow:var(--inset), 0 10px 0 var(--earth), 0 20px 26px rgba(40,60,30,.34);}
+  .btn:active{transform:translateY(7px);box-shadow:inset 0 3px 0 rgba(255,255,255,.4), inset 0 -3px 0 rgba(0,0,0,.14), 0 1px 0 var(--earth), 0 4px 10px rgba(40,60,30,.28);}
+  .btn.host,.btn.start{background-color:var(--moss);} .btn.join,.btn.blue{background-color:var(--sky);}
+  .btn.leave,.btn.fire{background-color:var(--fire);}
+  .btn.ghost{background-color:#e7dcc4;color:var(--earth);text-shadow:0 1px 0 rgba(255,255,255,.6);}
+
+  .screen{position:absolute;inset:0;display:none;} .screen.on{display:block;animation:pop .28s ease;}
+  @keyframes pop{from{opacity:0;transform:scale(.96);}to{opacity:1;transform:scale(1);}}
+
+  /* ===================== 主選單 ===================== */
+  #menu .topbar{position:absolute;top:22px;left:24px;right:24px;display:flex;justify-content:space-between;z-index:5;}
+  .pchip{display:flex;align-items:center;gap:10px;background:linear-gradient(#fdf6e6,#f0e3c6);border:3px solid var(--earth);border-radius:999px;
+    padding:6px 16px 6px 6px;box-shadow:var(--inset),0 6px 0 rgba(75,58,42,.18),0 10px 14px rgba(40,60,30,.18);cursor:pointer;}
+  .pchip .av{width:38px;height:38px;border-radius:50%;border:3px solid var(--earth);position:relative;
+    background:radial-gradient(circle at 38% 30%,#ff9b9b,#ef6f6f 60%,#d85c5c);box-shadow:inset 0 3px 0 rgba(255,255,255,.4),inset 0 -5px 4px rgba(0,0,0,.18);}
+  .pchip .av::before{content:"";position:absolute;top:11px;right:6px;width:14px;height:10px;background:#cdeffd;border:2px solid var(--earth);border-radius:6px;}
+  .pchip .nm{font-family:'Darumadrop One',cursive;font-size:18px;color:var(--earth);}
+  .iconbtn{width:48px;height:48px;border-radius:50%;background:linear-gradient(#fdf6e6,#ecdfc2);border:3px solid var(--earth);
+    box-shadow:var(--inset),0 6px 0 rgba(75,58,42,.2),0 10px 14px rgba(40,60,30,.2);font-size:22px;display:flex;align-items:center;justify-content:center;cursor:pointer;}
+  .iconbtn:active{transform:translateY(4px);}
+
+  .menu-wrap{position:absolute;inset:0;display:flex;align-items:center;justify-content:space-between;padding:0 8% 0 9%;z-index:3;}
+  .menu-left{max-width:440px;}
+  .menu-left.shake{animation:shake .45s;}
+  @keyframes shake{0%,100%{transform:translateX(0);}20%{transform:translateX(-8px);}40%{transform:translateX(8px);}60%{transform:translateX(-6px);}80%{transform:translateX(6px);}}
+  .logo{font-family:'Darumadrop One',cursive;font-size:88px;line-height:.95;color:var(--earth);
+    -webkit-text-stroke:4px var(--earth);paint-order:stroke fill;text-shadow:0 5px 0 rgba(75,58,42,.32),0 10px 14px rgba(40,60,30,.28);}
+  .logo .hi{color:var(--moss);} .logo .see{color:var(--sky);}
+  .badge{display:inline-block;background-color:var(--fire);background-image:var(--gloss);color:#fff;font-family:'Darumadrop One',cursive;font-size:17px;
+    padding:5px 18px;border-radius:999px;border:3px solid var(--earth);transform:rotate(-4deg);box-shadow:var(--inset),0 5px 0 rgba(75,58,42,.25),0 9px 10px rgba(40,60,30,.2);margin-bottom:8px;text-shadow:0 1px 0 rgba(0,0,0,.2);}
+  .tagline{font-weight:800;color:var(--earth-soft);font-size:17px;margin:12px 0 28px 4px;}
+  .menu-btns{display:flex;flex-direction:column;gap:18px;width:370px;}
+  .menu-btns .btn{font-size:30px;padding:16px 8px 14px;text-align:center;}
+  .menu-btns .btn.start{font-size:36px;padding:22px 8px 18px;}
+  .menu-btns .btn .ico{margin-right:8px;}
+
+  /* 吉祥物 */
+  .mascot-scene{position:relative;width:340px;height:420px;align-self:flex-end;margin-bottom:60px;}
+  .mascot-scene::after{content:"";position:absolute;left:58px;bottom:14px;width:160px;height:30px;border-radius:50%;background:rgba(40,70,30,.22);filter:blur(4px);}
+  .mascot{position:absolute;left:60px;bottom:30px;width:150px;height:188px;cursor:pointer;
+    background:radial-gradient(circle at 38% 26%,#ff9d9d 0%,#ef6f6f 54%,#d85a5a 100%);border:5px solid var(--earth);border-radius:75px 75px 64px 64px;
+    box-shadow:inset 0 10px 0 rgba(255,255,255,.28), inset 0 -16px 16px rgba(0,0,0,.16), 0 16px 0 rgba(75,58,42,.16), 0 26px 26px rgba(40,60,30,.28);animation:bob 2.4s ease-in-out infinite;}
+  .mascot.jump{animation:jump .5s ease !important;}
+  @keyframes jump{0%,100%{transform:translateY(0);}40%{transform:translateY(-46px);}}
+  .mascot .goggle{position:absolute;top:46px;right:24px;width:54px;height:40px;border:5px solid var(--earth);border-radius:20px;background:radial-gradient(circle at 35% 30%,#eaf9ff,#bfe6f7);box-shadow:inset 0 3px 0 rgba(255,255,255,.7);}
+  .mascot .leg{position:absolute;bottom:-18px;width:26px;height:24px;background:#e2655f;border:5px solid var(--earth);border-radius:0 0 12px 12px;border-top:none;}
+  .mascot .leg.l{left:34px;} .mascot .leg.r{left:80px;}
+  .mascot .arm{position:absolute;top:70px;left:-22px;width:46px;height:24px;background:#ef6f6f;border:5px solid var(--earth);border-radius:14px;transform-origin:right center;animation:wave 1.6s ease-in-out infinite;}
+  @keyframes bob{0%,100%{transform:translateY(0);}50%{transform:translateY(-10px);}}
+  @keyframes wave{0%,100%{transform:rotate(-6deg);}50%{transform:rotate(22deg);}}
+  #m-speech{position:absolute;left:120px;bottom:200px;background:#fff;border:3px solid var(--earth);border-radius:14px;padding:6px 13px;
+    font-family:'Darumadrop One';font-size:17px;color:var(--earth);box-shadow:0 5px 0 rgba(75,58,42,.2);opacity:0;transform:scale(.4);transform-origin:bottom left;transition:.18s;pointer-events:none;z-index:6;}
+  #m-speech.show{opacity:1;transform:scale(1);}
+  #m-speech::after{content:"";position:absolute;bottom:-13px;left:18px;width:0;height:0;border:8px solid transparent;border-top-color:var(--earth);}
+  .tent{position:absolute;right:6px;bottom:40px;width:0;height:0;border-left:62px solid transparent;border-right:62px solid transparent;border-bottom:96px solid var(--sky);filter:drop-shadow(0 10px 6px rgba(40,70,30,.22));}
+  .tent::after{content:"";position:absolute;left:-14px;top:50px;width:28px;height:46px;background:#2c688a;border-radius:8px 8px 0 0;}
+  .campfire{position:absolute;left:6px;bottom:18px;font-size:40px;animation:flick 1.2s ease-in-out infinite;filter:drop-shadow(0 4px 6px rgba(238,138,60,.5));}
+  @keyframes flick{0%,100%{transform:scale(1) rotate(-2deg);}50%{transform:scale(1.12) rotate(3deg);}}
+  .version{position:absolute;left:24px;bottom:18px;color:var(--earth-soft);font-weight:700;font-size:13px;z-index:5;}
+
+  /* ===================== 卡片 ===================== */
+  .card{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:440px;max-width:92vw;
+    background:linear-gradient(#fdf6e6,#f0e2c5);border:4px solid var(--earth);border-radius:30px;padding:26px 30px;
+    box-shadow:inset 0 3px 0 rgba(255,255,255,.7), inset 0 -8px 16px rgba(75,58,42,.10), 0 18px 0 rgba(75,58,42,.18), 0 34px 54px rgba(40,60,30,.32);z-index:4;}
+  .back{position:absolute;top:18px;left:18px;width:42px;height:42px;border-radius:50%;background:linear-gradient(#efe4cb,#e0d2b2);border:3px solid var(--earth);
+    font-family:'Darumadrop One';font-size:22px;color:var(--earth);cursor:pointer;box-shadow:var(--inset),0 5px 0 rgba(75,58,42,.2),0 9px 10px rgba(40,60,30,.18);}
+  .back:active{transform:translateY(4px);}
+  .card-title{font-family:'Darumadrop One',cursive;font-size:34px;color:var(--earth);text-align:center;margin-bottom:6px;text-shadow:0 3px 0 rgba(75,58,42,.16);}
+  .field-label{font-weight:800;color:var(--earth-soft);font-size:13px;margin:14px 0 5px 6px;}
+  .input{width:100%;font-family:'Nunito';font-weight:700;font-size:17px;color:var(--earth);background:linear-gradient(#ffffff,#f5efe2);border:3px solid var(--earth);border-radius:16px;padding:11px 16px;outline:none;box-shadow:inset 0 3px 5px rgba(75,58,42,.16);}
+  .room-hero{margin-top:14px;background:linear-gradient(#e9f6ff,#cfe7fa);border:4px dashed var(--sky-dark);border-radius:22px;padding:12px 16px 14px;text-align:center;position:relative;box-shadow:inset 0 5px 12px rgba(47,127,172,.26), inset 0 -2px 0 rgba(255,255,255,.6);}
+  .room-hero .cap{font-weight:800;font-size:12px;letter-spacing:2px;color:var(--sky-dark);}
+  .room-hero input{width:100%;text-align:center;font-family:'Darumadrop One',cursive;font-size:38px;color:var(--earth);background:transparent;border:none;outline:none;text-shadow:0 2px 0 rgba(255,255,255,.6);}
+  .ppl{display:flex;align-items:center;justify-content:center;gap:14px;margin-top:4px;}
+  .step{width:42px;height:42px;border-radius:50%;border:3px solid var(--earth);background:linear-gradient(#ffffff,#ece3d2);font-family:'Darumadrop One';font-size:24px;color:var(--earth);cursor:pointer;box-shadow:var(--inset),0 5px 0 rgba(75,58,42,.22),0 8px 8px rgba(40,60,30,.18);}
+  .step:active{transform:translateY(4px);box-shadow:0 1px 0 rgba(75,58,42,.22);}
+  .ppl .count{font-family:'Darumadrop One';font-size:32px;color:var(--earth);min-width:40px;text-align:center;text-shadow:0 2px 0 rgba(255,255,255,.6);}
+  .btn-row{display:flex;gap:14px;margin-top:20px;}
+  .btn-row .btn{flex:1;font-size:23px;padding:13px 8px 11px;}
+  .status{margin-top:14px;text-align:center;font-weight:700;font-size:13px;color:var(--earth-soft);}
+
+  .spinner{width:54px;height:54px;margin:18px auto 8px;border:6px solid var(--cream-deep);border-top-color:var(--moss);border-radius:50%;animation:spin 1s linear infinite;}
+  @keyframes spin{to{transform:rotate(360deg);}}
+  .big-state{font-family:'Darumadrop One',cursive;font-size:26px;color:var(--earth);text-align:center;margin:6px 0 2px;text-shadow:0 2px 0 rgba(255,255,255,.5);}
+  .players{display:flex;justify-content:center;gap:10px;margin:16px 0 6px;flex-wrap:wrap;min-height:54px;}
+  .bean{width:46px;height:54px;border-radius:24px 24px 22px 22px;border:3px solid var(--earth);position:relative;background:#ef6f6f;
+    box-shadow:inset 0 6px 0 rgba(255,255,255,.25),inset 0 -8px 8px rgba(0,0,0,.15),0 5px 0 rgba(75,58,42,.18);}
+  .bean::before{content:"";position:absolute;top:13px;right:8px;width:16px;height:12px;background:#cdeffd;border:2px solid var(--earth);border-radius:8px;}
+  .bean.empty{background:#e7dcc4;border-style:dashed;box-shadow:none;opacity:.55;}
+  .bean.empty::before{display:none;}
+  .bean.pop{animation:beanpop .4s ease;}
+  @keyframes beanpop{0%{transform:scale(0) translateY(10px);}60%{transform:scale(1.18);}100%{transform:scale(1);}}
+  .count-big{font-family:'Darumadrop One';font-size:30px;color:var(--earth);text-align:center;text-shadow:0 2px 0 rgba(255,255,255,.6);}
+
+  /* 設定 */
+  .set-row{display:flex;align-items:center;justify-content:space-between;margin-top:18px;gap:14px;}
+  .set-row .lbl{font-family:'Darumadrop One';font-size:21px;color:var(--earth);min-width:78px;}
+  .slider{flex:1;height:18px;background:var(--cream-deep);border:3px solid var(--earth);border-radius:999px;position:relative;cursor:pointer;box-shadow:inset 0 3px 5px rgba(75,58,42,.28);}
+  .slider .fill{position:absolute;top:-3px;left:-3px;height:18px;border:3px solid var(--earth);border-radius:999px;background:var(--moss);background-image:linear-gradient(rgba(255,255,255,.45),rgba(255,255,255,0) 55%,rgba(0,0,0,.12));}
+  .slider .knob{position:absolute;top:-11px;width:30px;height:30px;border-radius:50%;border:3px solid var(--earth);background:radial-gradient(circle at 38% 30%,#ffffff,#e9e0cf);box-shadow:0 4px 0 rgba(75,58,42,.22),inset 0 2px 0 rgba(255,255,255,.9);margin-left:-15px;}
+  .toggle{width:64px;height:34px;border-radius:999px;background-color:var(--moss);background-image:linear-gradient(rgba(255,255,255,.3),rgba(0,0,0,.14));border:3px solid var(--earth);position:relative;cursor:pointer;box-shadow:inset 0 3px 5px rgba(0,0,0,.2);transition:background-color .15s;}
+  .toggle .dot{position:absolute;top:2px;right:3px;left:auto;width:24px;height:24px;border-radius:50%;border:2px solid var(--earth);background:radial-gradient(circle at 38% 30%,#ffffff,#e7ddcd);box-shadow:0 2px 0 rgba(75,58,42,.25);transition:left .15s, right .15s;}
+  .toggle.off{background-color:#c9bfa8;}
+  .toggle.off .dot{right:auto;left:3px;}
+  .langs{display:flex;gap:8px;}
+  .lang{font-family:'Darumadrop One';font-size:16px;padding:6px 14px;border-radius:999px;border:3px solid var(--earth);background:linear-gradient(#ffffff,#efe6d6);color:var(--earth);cursor:pointer;box-shadow:0 4px 0 rgba(75,58,42,.18);}
+  .lang.sel{background-color:var(--sky);background-image:var(--gloss);color:#fff;text-shadow:0 1px 0 rgba(0,0,0,.2);}
+
+  .confetti{position:fixed;width:11px;height:15px;border-radius:2px;z-index:50;pointer-events:none;animation:conf 1.05s ease-out forwards;}
+  @keyframes conf{to{transform:translate(var(--dx),var(--dy)) rotate(var(--rot));opacity:0;}}
+
+  .switcher{position:fixed;top:14px;left:50%;transform:translateX(-50%);z-index:20;background:rgba(255,255,255,.92);border:2px solid var(--earth);border-radius:999px;padding:4px;display:flex;gap:4px;box-shadow:0 6px 14px rgba(40,60,30,.2);}
+  .switcher button{font-family:'Nunito';font-weight:800;font-size:12px;border:none;cursor:pointer;background:transparent;color:var(--earth);padding:6px 13px;border-radius:999px;}
+  .switcher button.sel{background:var(--moss);color:#fff;}
+</style>
+</head>
+<body>
+<div class="stage">
+  <div class="sun"></div>
+  <div class="cloud a"></div><div class="cloud b"></div><div class="cloud c"></div>
+  <div class="hill far"></div><div class="hill near"></div>
+  <div class="tree t1"><i></i><i></i><b></b></div>
+  <div class="tree t2"><i></i><i></i><b></b></div>
+  <div class="tree t3"><i></i><i></i><b></b></div>
+
+  <div class="switcher">
+    <button class="sel" onclick="show('menu',this)">主選單</button>
+    <button onclick="show('play',this)">開始遊戲</button>
+    <button onclick="show('settings',this)">設定</button>
+  </div>
+
+  <!-- ===================== 主選單 ===================== -->
+  <section id="menu" class="screen on">
+    <div class="topbar">
+      <div class="pchip" onclick="goSettings()"><div class="av"></div><span class="nm">小探險家 6979</span> ✏️</div>
+      <div class="iconbtn" onclick="toggleSound(this)">🔊</div>
+    </div>
+    <div class="menu-wrap">
+      <div class="menu-left">
+        <div class="badge">🔦 第 1 露營梯隊</div>
+        <div class="logo"><span class="hi">Hi</span>And<span class="see">See</span></div>
+        <div class="tagline">和朋友一起躲貓貓 🌲</div>
+        <div class="menu-btns">
+          <button class="btn start" onclick="goPlay()"><span class="ico">🎮</span>開始遊戲</button>
+          <button class="btn blue" onclick="goSettings()"><span class="ico">⚙️</span>設定</button>
+          <button class="btn ghost" onclick="quit()"><span class="ico">🚪</span>離開遊戲</button>
+        </div>
+      </div>
+      <div class="mascot-scene">
+        <div id="m-speech">走吧！🎒</div>
+        <div class="tent"></div>
+        <div class="mascot" onclick="pokeMascot(this)"><div class="goggle"></div><div class="arm"></div><div class="leg l"></div><div class="leg r"></div></div>
+        <div class="campfire">🔥</div>
+      </div>
+    </div>
+    <div class="version">v0.1 ・ HiAndSee</div>
+  </section>
+
+  <!-- ===================== 開始遊戲 → 連線 ===================== -->
+  <section id="play" class="screen">
+    <div class="card">
+      <div class="back" onclick="goMenu()">‹</div>
+
+      <div id="p-form">
+        <div class="card-title">找朋友一起玩</div>
+        <div class="field-label">祕密基地名稱</div>
+        <div class="room-hero"><div class="cap">分享給朋友就能一起玩</div><input value="Room1" /></div>
+        <div class="field-label" style="text-align:center;">幾個人玩</div>
+        <div class="ppl"><button class="step" onclick="stepMax(-1)">−</button><span class="count" id="max-count">4</span><button class="step" onclick="stepMax(1)">＋</button></div>
+        <div class="btn-row">
+          <button class="btn host" onclick="host()">開一局 🎮</button>
+          <button class="btn join" onclick="join()">加入朋友 👋</button>
+        </div>
+        <div class="status">準備好就出發！</div>
+      </div>
+
+      <div id="p-connecting" style="display:none;">
+        <div class="spinner"></div>
+        <div class="big-state">正在前往營地…</div>
+        <div class="status">建立連線中，稍等一下下</div>
+        <div class="btn-row"><button class="btn ghost" onclick="leave()">取消</button></div>
+      </div>
+
+      <div id="p-connected" style="display:none;">
+        <div class="big-state">已抵達祕密基地 🏕️</div>
+        <div class="room-hero" style="margin-top:8px;"><div class="cap">基地</div><div style="font-family:'Darumadrop One';font-size:32px;color:var(--earth);">Room1</div></div>
+        <div class="players" id="beans"></div>
+        <div class="count-big" id="pcount">1 / 4</div>
+        <div class="btn-row"><button class="btn leave" onclick="leave()">離開營地</button></div>
+        <div class="status">把基地名稱告訴朋友就能一起玩！</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== 設定 ===================== -->
+  <section id="settings" class="screen">
+    <div class="card">
+      <div class="back" onclick="goMenu()">‹</div>
+      <div class="card-title">設定</div>
+      <div class="set-row"><span class="lbl">音樂</span>
+        <div class="slider" id="sl-music"><div class="fill" style="width:72%"></div><div class="knob" style="left:72%"></div></div></div>
+      <div class="set-row"><span class="lbl">音效</span>
+        <div class="slider" id="sl-sfx"><div class="fill" style="width:88%"></div><div class="knob" style="left:88%"></div></div></div>
+      <div class="set-row"><span class="lbl">全螢幕</span><div class="toggle" onclick="this.classList.toggle('off')"><div class="dot"></div></div></div>
+      <div class="set-row"><span class="lbl">語言</span>
+        <div class="langs"><span class="lang sel" onclick="pickLang(this)">中文</span><span class="lang" onclick="pickLang(this)">EN</span><span class="lang" onclick="pickLang(this)">日本語</span></div></div>
+      <div class="field-label">你的名字</div>
+      <input class="input" value="小探險家 6979" />
+      <div class="btn-row"><button class="btn host" onclick="saveSettings(this)">儲存</button></div>
+    </div>
+  </section>
+</div>
+
+<script>
+  const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
+  function show(id, el){
+    $$('.screen').forEach(s=>s.classList.remove('on'));
+    document.getElementById(id).classList.add('on');
+    $$('.switcher button').forEach(b=>b.classList.remove('sel'));
+    if(el){ el.classList.add('sel'); }
+    else { const i={menu:0,play:1,settings:2}[id]; const b=$$('.switcher button')[i]; if(b)b.classList.add('sel'); }
+    if(id==='play') setPlayState('form');
+  }
+  function goMenu(){ show('menu'); }
+  function goPlay(){ show('play'); }
+  function goSettings(){ show('settings'); }
+  function quit(){ const m=$('#menu .menu-left'); m.classList.add('shake'); setTimeout(()=>m.classList.remove('shake'),460); }
+
+  /* 連線流程 */
+  let maxPlayers=4, ct, jt;
+  function setPlayState(s){ ['form','connecting','connected'].forEach(x=>$('#p-'+x).style.display = (x===s?'block':'none')); }
+  function stepMax(d){ maxPlayers=Math.max(1,Math.min(8,maxPlayers+d)); $('#max-count').textContent=maxPlayers; }
+  function host(){ connectFlow(); } function join(){ connectFlow(); }
+  function connectFlow(){
+    setPlayState('connecting'); clearTimeout(ct);
+    ct=setTimeout(()=>{ setPlayState('connected'); fillPlayers(); confetti(); }, 1500);
+  }
+  function fillPlayers(){
+    const wrap=$('#beans'); wrap.innerHTML=''; const colors=['#ef6f6f','#5fb6e6','#7ed47e','#f4c64f'];
+    $('#pcount').textContent='1 / '+maxPlayers;
+    for(let i=0;i<maxPlayers;i++){ const b=document.createElement('div'); b.className='bean'+(i<1?'':' empty'); if(i<1){b.style.background=colors[0];b.classList.add('pop');} wrap.appendChild(b); }
+    clearTimeout(jt);
+    jt=setTimeout(()=>{ const beans=$$('#beans .bean'); if(beans[1]){ beans[1].classList.remove('empty'); beans[1].style.background=colors[1]; beans[1].classList.add('pop'); } $('#pcount').textContent='2 / '+maxPlayers; },1300);
+  }
+  function leave(){ clearTimeout(ct); clearTimeout(jt); setPlayState('form'); }
+
+  /* 設定互動 */
+  function bindSlider(id){
+    const sl=$(id), fill=sl.querySelector('.fill'), knob=sl.querySelector('.knob'); let down=false;
+    const set=x=>{ const r=sl.getBoundingClientRect(); let p=Math.max(0,Math.min(1,(x-r.left)/r.width)); fill.style.width=(p*100)+'%'; knob.style.left=(p*100)+'%'; };
+    sl.addEventListener('mousedown',e=>{down=true;set(e.clientX);});
+    window.addEventListener('mousemove',e=>{if(down)set(e.clientX);});
+    window.addEventListener('mouseup',()=>down=false);
+  }
+  function pickLang(el){ $$('.lang').forEach(l=>l.classList.remove('sel')); el.classList.add('sel'); }
+  function toggleSound(b){ b.textContent = (b.textContent.trim()==='🔊')?'🔇':'🔊'; }
+  function saveSettings(b){ const t=b.textContent; b.textContent='已儲存 ✓'; confetti(); setTimeout(()=>b.textContent=t,1100); }
+
+  /* 吉祥物 */
+  function pokeMascot(m){ m.classList.add('jump'); const sp=$('#m-speech'); sp.classList.add('show'); setTimeout(()=>m.classList.remove('jump'),500); clearTimeout(window.st); window.st=setTimeout(()=>sp.classList.remove('show'),1300); }
+
+  /* 彩帶 */
+  function confetti(){
+    const C=['#62a83f','#49a6d8','#ee8a3c','#ef6f6f','#f4d03f','#ffffff'];
+    for(let i=0;i<30;i++){ const c=document.createElement('div'); c.className='confetti';
+      c.style.left=(50+(Math.random()*36-18))+'%'; c.style.top='42%'; c.style.background=C[i%C.length];
+      c.style.setProperty('--dx',(Math.random()*260-130)+'px'); c.style.setProperty('--dy',(150+Math.random()*240)+'px'); c.style.setProperty('--rot',(Math.random()*620-310)+'deg');
+      document.body.appendChild(c); setTimeout(()=>c.remove(),1100); }
+  }
+  bindSlider('#sl-music'); bindSlider('#sl-sfx');
+</script>
+</body>
+</html>
