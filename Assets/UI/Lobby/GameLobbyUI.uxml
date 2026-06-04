@@ -1,0 +1,57 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" editor-extension-mode="False">
+    <Style src="GameLobbyStyles.uss" />
+    <ui:VisualElement name="lobby-root" class="lobby-root" picking-mode="Ignore">
+
+        <ui:VisualElement class="hud" picking-mode="Ignore">
+            <ui:VisualElement class="hud-row">
+                <ui:Label name="room-label" text="房間 HISE-4821" class="hud-pill code" />
+                <ui:Label name="hud-players" text="玩家 1 / 4" class="hud-pill" />
+                <ui:Label name="players-count" text="準備 1 / 4" class="hud-pill" />
+            </ui:VisualElement>
+            <ui:VisualElement class="key-row">
+                <ui:Label text="TAB 大廳頁面" class="key-chip primary-hint" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+
+        <ui:VisualElement name="lobby-panel" class="overlay">
+            <ui:VisualElement class="page">
+                <ui:VisualElement class="page-header">
+                    <ui:VisualElement>
+                        <ui:Label text="房間大廳" class="lobby-title" />
+                        <ui:Label text="按 TAB 關閉頁面，返回第一人稱操作。" class="page-subtitle" />
+                    </ui:VisualElement>
+                    <ui:VisualElement class="header-keys">
+                        <ui:Label text="TAB 關閉" class="key-chip" />
+                        <ui:Label text="ENTER 開始" class="key-chip" />
+                    </ui:VisualElement>
+                </ui:VisualElement>
+
+                <ui:VisualElement class="page-grid">
+                    <ui:VisualElement class="panel-card">
+                        <ui:VisualElement class="panel-head">
+                            <ui:Label text="玩家列表" class="section-title" />
+                            <ui:Label text="身份開始後抽選" class="section-note" />
+                        </ui:VisualElement>
+                        <ui:VisualElement name="players-list" class="players-list" />
+                    </ui:VisualElement>
+
+                    <ui:VisualElement class="panel-card">
+                        <ui:VisualElement class="panel-head">
+                            <ui:Label text="房間資訊" class="section-title" />
+                            <ui:Label text="只有房主可調整" class="section-note" />
+                        </ui:VisualElement>
+                        <ui:VisualElement class="info-grid">
+                            <ui:Label text="模式&#10;休閒局" class="info-tile" />
+                            <ui:Label text="人數&#10;4-8" class="info-tile" />
+                            <ui:Label text="地圖&#10;小鎮" class="info-tile" />
+                            <ui:Label text="回合&#10;10 分" class="info-tile" />
+                        </ui:VisualElement>
+                        <ui:Label text="大廳不顯示局內 HUD。玩家沒有滑鼠游標時，按 TAB 才進入完整大廳頁面。" class="notice" />
+                        <ui:Button name="start-btn" text="開始遊戲" class="start-btn" />
+                    </ui:VisualElement>
+                </ui:VisualElement>
+            </ui:VisualElement>
+        </ui:VisualElement>
+
+    </ui:VisualElement>
+</ui:UXML>

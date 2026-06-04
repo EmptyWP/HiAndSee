@@ -1,0 +1,23 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" editor-extension-mode="False">
+    <Style src="GameHUDStyles.uss" />
+    <ui:VisualElement name="game-root" class="game-root" picking-mode="Ignore">
+        <ui:VisualElement class="status-stack" picking-mode="Ignore">
+            <ui:Label name="role-label" text="身份抽選中" class="role-label" />
+            <ui:Label name="objective-label" text="等待所有玩家進入遊戲" class="objective-label" />
+            <ui:Label name="task-label" text="任務 0 / 4" class="task-label" />
+        </ui:VisualElement>
+
+        <ui:VisualElement class="center-stack" picking-mode="Ignore">
+            <ui:Label name="prompt-label" text="" class="prompt-label" />
+            <ui:VisualElement class="progress-bg">
+                <ui:VisualElement name="progress-fill" class="progress-fill" />
+            </ui:VisualElement>
+            <ui:Label name="result-label" text="" class="result-label" />
+        </ui:VisualElement>
+
+        <ui:VisualElement class="key-row" picking-mode="Ignore">
+            <ui:Label text="F 互動" class="key-chip" />
+            <ui:Label text="E 抓捕" class="key-chip" />
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

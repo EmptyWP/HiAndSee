@@ -1,0 +1,95 @@
+.game-root {
+    flex-grow: 1;
+}
+
+.status-stack {
+    position: absolute;
+    left: 28px;
+    top: 24px;
+    width: 330px;
+    padding: 12px 14px;
+    border-width: 1px;
+    border-radius: 8px;
+    border-color: rgba(177, 255, 247, 0.18);
+    background-color: rgba(8, 18, 26, 0.56);
+}
+
+.role-label {
+    color: rgb(37, 199, 189);
+    font-size: 18px;
+    -unity-font-style: bold;
+}
+
+.objective-label {
+    margin-top: 4px;
+    color: rgba(236, 255, 252, 0.78);
+    font-size: 13px;
+    white-space: normal;
+}
+
+.task-label {
+    margin-top: 10px;
+    color: rgb(236, 255, 252);
+    font-size: 14px;
+    -unity-font-style: bold;
+}
+
+.center-stack {
+    position: absolute;
+    left: 50%;
+    bottom: 112px;
+    width: 420px;
+    margin-left: -210px;
+    align-items: center;
+}
+
+.prompt-label {
+    min-height: 24px;
+    color: rgb(245, 250, 241);
+    font-size: 16px;
+    -unity-font-style: bold;
+    -unity-text-align: middle-center;
+    white-space: normal;
+}
+
+.progress-bg {
+    width: 280px;
+    height: 8px;
+    margin-top: 8px;
+    border-radius: 4px;
+    background-color: rgba(236, 255, 252, 0.2);
+}
+
+.progress-fill {
+    width: 0%;
+    height: 8px;
+    border-radius: 4px;
+    background-color: rgb(37, 199, 189);
+}
+
+.result-label {
+    margin-top: 10px;
+    color: rgb(255, 111, 142);
+    font-size: 22px;
+    -unity-font-style: bold;
+    -unity-text-align: middle-center;
+}
+
+.key-row {
+    position: absolute;
+    left: 28px;
+    bottom: 24px;
+    flex-direction: row;
+}
+
+.key-chip {
+    margin-right: 8px;
+    padding: 7px 10px;
+    border-width: 1px;
+    border-radius: 7px;
+    border-color: rgba(177, 255, 247, 0.18);
+    background-color: rgba(8, 18, 26, 0.66);
+    color: rgb(236, 255, 252);
+    font-size: 13px;
+    -unity-font-style: bold;
+}

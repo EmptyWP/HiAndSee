@@ -33,6 +33,7 @@ namespace HiAndSee.Net
         [SerializeField] Transform _cameraTarget;   // PlayerCameraRoot
 
         CharacterController _cc;
+        PlayerNetworkSetup _playerState;
         float _verticalVel;
         float _pitch;
         float _yawAccum;   // 累積每幀的滑鼠水平位移，於 FixedUpdateNetwork 一次套用
@@ -43,13 +44,14 @@ namespace HiAndSee.Net
         void Awake()
         {
             _cc = GetComponent<CharacterController>();
+            _playerState = GetComponent<PlayerNetworkSetup>();
             if (_input == null) _input = GetComponent<StarterAssetsInputs>();
             if (_cameraTarget != null) { _camBaseLocalPos = _cameraTarget.localPosition; _bobInit = true; }
         }
 
         public override void Spawned()
         {
-            if (HasInputAuthority) SetCursor(true);
+            // 游標由 GameLobby 的準備大廳 UI 控制（面板開→顯示、開始/收合→鎖定）。
         }
 
         void Update()
@@ -69,6 +71,13 @@ namespace HiAndSee.Net
             if (!HasStateAuthority || _cc == null || _input == null) return;
 
             float dt = Runner.DeltaTime;
+            if (_playerState != null && _playerState.IsCaptured)
+            {
+                if (_cc.isGrounded) _verticalVel = -2f;
+                else _verticalVel += Gravity * dt;
+                _cc.Move(Vector3.up * _verticalVel * dt);
+                return;
+            }
 
             // 轉身（yaw）— 套用 Update 累積的位移，不漏 delta；身體旋轉會被 NetworkTransform 同步給他人
             if (_yawAccum != 0f)
@@ -86,10 +95,14 @@ namespace HiAndSee.Net
             }
             _verticalVel += Gravity * dt;
 
-            // 水平移動
+            // 水平移動（游標鎖定＝遊戲中才動；大廳面板開啟時凍結，只保留重力）
+            Vector3 dir = Vector3.zero;
+            if (Cursor.lockState == CursorLockMode.Locked)
+            {
+                dir = transform.right * _input.move.x + transform.forward * _input.move.y;
+                if (dir.sqrMagnitude > 1f) dir.Normalize();
+            }
             float speed = _input.sprint ? SprintSpeed : MoveSpeed;
-            Vector3 dir = transform.right * _input.move.x + transform.forward * _input.move.y;
-            if (dir.sqrMagnitude > 1f) dir.Normalize();
             _cc.Move((dir * speed + Vector3.up * _verticalVel) * dt);
         }
 

@@ -1,0 +1,207 @@
+.lobby-root {
+    flex-grow: 1;
+}
+
+.hud {
+    position: absolute;
+    left: 28px;
+    top: 22px;
+    right: 28px;
+}
+
+.hud-row {
+    flex-direction: row;
+}
+
+.hud-pill {
+    min-width: 96px;
+    margin-right: 8px;
+    padding: 7px 11px;
+    border-width: 1px;
+    border-radius: 7px;
+    border-color: rgba(177, 255, 247, 0.18);
+    background-color: rgba(13, 25, 34, 0.62);
+    color: rgb(236, 255, 252);
+    font-size: 14px;
+    -unity-font-style: bold;
+    -unity-text-align: middle-center;
+}
+
+.hud-pill.code {
+    color: rgb(5, 31, 34);
+    background-color: rgba(37, 199, 189, 0.92);
+    border-color: rgba(190, 255, 248, 0.38);
+}
+
+.key-row {
+    flex-direction: row;
+    margin-top: 10px;
+}
+
+.key-chip {
+    margin-right: 8px;
+    padding: 7px 10px;
+    border-width: 1px;
+    border-radius: 7px;
+    border-color: rgba(177, 255, 247, 0.18);
+    background-color: rgba(13, 25, 34, 0.68);
+    color: rgb(236, 255, 252);
+    font-size: 13px;
+    -unity-font-style: bold;
+}
+
+.key-chip.primary-hint {
+    color: rgb(5, 31, 34);
+    background-color: rgba(37, 199, 189, 0.94);
+    border-color: rgba(190, 255, 248, 0.38);
+}
+
+.overlay {
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(7, 14, 21, 0.72);
+}
+
+.page {
+    width: 980px;
+}
+
+.page-header {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 14px;
+    padding: 16px;
+    border-radius: 8px;
+    border-width: 1px;
+    border-color: rgba(177, 255, 247, 0.22);
+    background-color: rgba(13, 25, 34, 0.82);
+}
+
+.lobby-title {
+    color: rgb(245, 250, 241);
+    font-size: 34px;
+    -unity-font-style: bold;
+}
+
+.page-subtitle {
+    margin-top: 4px;
+    color: rgba(236, 255, 252, 0.68);
+    font-size: 13px;
+    -unity-font-style: bold;
+}
+
+.header-keys {
+    flex-direction: row;
+}
+
+.page-grid {
+    flex-direction: row;
+}
+
+.panel-card {
+    flex-grow: 1;
+    margin-right: 12px;
+    padding: 14px;
+    border-radius: 8px;
+    border-width: 1px;
+    border-color: rgba(177, 255, 247, 0.26);
+    background-color: rgba(235, 246, 243, 0.94);
+}
+
+.panel-head {
+    margin-bottom: 10px;
+}
+
+.section-title {
+    color: rgb(17, 26, 34);
+    font-size: 20px;
+    -unity-font-style: bold;
+}
+
+.section-note {
+    margin-top: 2px;
+    color: rgba(17, 26, 34, 0.62);
+    font-size: 12px;
+    -unity-font-style: bold;
+}
+
+.players-list {
+    min-height: 180px;
+}
+
+.player-row {
+    margin-bottom: 8px;
+    padding: 9px 11px;
+    border-radius: 7px;
+    border-width: 1px;
+    border-color: rgba(17, 26, 34, 0.12);
+    background-color: rgba(255, 255, 255, 0.58);
+    color: rgb(17, 26, 34);
+    font-size: 16px;
+    -unity-font-style: bold;
+}
+
+.info-grid {
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.info-tile {
+    width: 47%;
+    min-height: 68px;
+    margin-right: 8px;
+    margin-bottom: 8px;
+    padding: 10px;
+    border-width: 1px;
+    border-radius: 7px;
+    border-color: rgba(17, 26, 34, 0.12);
+    background-color: rgba(255, 255, 255, 0.54);
+    color: rgb(17, 26, 34);
+    font-size: 15px;
+    -unity-font-style: bold;
+    white-space: normal;
+}
+
+.notice {
+    margin-top: 8px;
+    padding: 11px;
+    border-radius: 7px;
+    border-width: 1px;
+    border-color: rgba(37, 199, 189, 0.28);
+    background-color: rgba(37, 199, 189, 0.12);
+    color: rgba(17, 26, 34, 0.72);
+    font-size: 13px;
+    -unity-font-style: bold;
+    white-space: normal;
+}
+
+.start-btn {
+    height: 52px;
+    margin-top: 14px;
+    border-width: 1px;
+    border-bottom-width: 5px;
+    border-radius: 8px;
+    border-color: rgba(190, 255, 248, 0.45);
+    background-color: rgb(37, 199, 189);
+    color: rgb(5, 31, 34);
+    font-size: 20px;
+    -unity-font-style: bold;
+    -unity-text-align: middle-center;
+    transition-property: translate, border-bottom-width;
+    transition-duration: 0.08s;
+}
+
+.start-btn:hover {
+    translate: 0 -1px;
+}
+
+.start-btn:active {
+    translate: 0 3px;
+    border-bottom-width: 2px;
+}

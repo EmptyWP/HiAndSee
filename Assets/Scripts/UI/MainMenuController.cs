@@ -63,7 +63,7 @@ namespace HiAndSee.UI
             _fullscreenToggle = root.Q<Toggle>("fullscreen-toggle");
 
             // 還原偏好
-            string nick = PlayerPrefs.GetString(NicknameKey, "小探險家 " + Random.Range(1000, 9999));
+            string nick = PlayerPrefs.GetString(NicknameKey, "Player " + Random.Range(1000, 9999));
             if (_nameField != null) _nameField.value = nick;
             if (_profileName != null) _profileName.text = nick;
             if (_roomField != null) _roomField.value = PlayerPrefs.GetString(SessionKey, "Room1");
@@ -111,7 +111,7 @@ namespace HiAndSee.UI
 
         void StepMax(int d)
         {
-            _maxPlayers = Mathf.Clamp(_maxPlayers + d, 1, 8);
+            _maxPlayers = Mathf.Clamp(_maxPlayers + d, 4, 8);
             if (_maxLabel != null) _maxLabel.text = _maxPlayers.ToString();
         }
 
@@ -122,16 +122,16 @@ namespace HiAndSee.UI
             PlayerPrefs.SetString(SessionKey, room);
             PlayerPrefs.SetString(NicknameKey, nick);
             PlayerPrefs.Save();
-            if (_connectStatus != null) _connectStatus.text = "連線中…";
+            if (_connectStatus != null) _connectStatus.text = "連線中...";
             _connection.Connect(room, _maxPlayers, nick);
         }
 
         void OnStateChanged(ConnectionState state)
         {
             if (_connectStatus == null) return;
-            if (state == ConnectionState.Connecting) _connectStatus.text = "正在前往營地…";
-            else if (state == ConnectionState.Connected) _connectStatus.text = "已連線，載入 GameLobby…";
-            else _connectStatus.text = "準備好就出發！";
+            if (state == ConnectionState.Connecting) _connectStatus.text = "正在連線...";
+            else if (state == ConnectionState.Connected) _connectStatus.text = "已連線，載入 GameLobby...";
+            else _connectStatus.text = "等待選擇房間流程";
         }
 
         void OnError(string message)
@@ -144,7 +144,7 @@ namespace HiAndSee.UI
         {
             _muted = !_muted;
             AudioListener.volume = _muted ? 0f : 1f;
-            if (_soundBtn != null) _soundBtn.text = _muted ? "x" : "♪";
+            if (_soundBtn != null) _soundBtn.text = _muted ? "MUTE" : "SOUND";
         }
 
         void SaveSettings()
