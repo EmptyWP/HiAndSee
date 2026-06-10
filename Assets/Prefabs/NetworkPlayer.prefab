@@ -409,6 +409,15 @@ MonoBehaviour:
   - {fileID: 3668746124058137920}
   localOnlyObjects:
   - {fileID: 846993779828354574}
+  _Nick:
+    _length: 0
+    _data:
+      Data: 00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+  _RoleId: 0
+  _IsCaptured:
+    _value: 0
+  _IsBot:
+    _value: 0
 --- !u!114 &298782715124139904
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -428,6 +437,9 @@ MonoBehaviour:
   Gravity: -15
   TopClamp: 90
   BottomClamp: -90
+  BobAmplitude: 0.06
+  BobFrequency: 1.8
+  BobSmoothing: 10
   _input: {fileID: 7495717367629178465}
   _cameraTarget: {fileID: 6292671823401691903}
 --- !u!1 &6507979908998079341
