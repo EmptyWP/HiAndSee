@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 00bb9b6c515a25b43a92245dea2db0a6
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 274320
+  packageName: Oodles Engine - Physics Gameplay
+  packageVersion: 1.0
+  assetPath: Assets/TechFusion/OodlesEngine/Animators/OodlesController.controller
+  uploadId: 664538

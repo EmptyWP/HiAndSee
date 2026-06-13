@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 5d2dbe9123fed1a44a9799f29fdf3933
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 7400000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 274320
+  packageName: Oodles Engine - Physics Gameplay
+  packageVersion: 1.0
+  assetPath: Assets/TechFusion/OodlesEngine/Animations/RightHandWeapon.anim
+  uploadId: 664538

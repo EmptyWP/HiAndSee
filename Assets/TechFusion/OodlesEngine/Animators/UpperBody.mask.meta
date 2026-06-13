@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: a8cc5f239f24aa64aab64a3ebe10832f
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 31900000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 274320
+  packageName: Oodles Engine - Physics Gameplay
+  packageVersion: 1.0
+  assetPath: Assets/TechFusion/OodlesEngine/Animators/UpperBody.mask
+  uploadId: 664538

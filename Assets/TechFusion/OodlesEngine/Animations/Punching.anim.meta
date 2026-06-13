@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 155b48b3fbb75fd4f8051bc4bd37ebca
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 7400000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 274320
+  packageName: Oodles Engine - Physics Gameplay
+  packageVersion: 1.0
+  assetPath: Assets/TechFusion/OodlesEngine/Animations/Punching.anim
+  uploadId: 664538
